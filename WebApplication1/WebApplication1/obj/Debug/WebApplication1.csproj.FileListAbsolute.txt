@@ -89,3 +89,7 @@ D:\Demo\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCom
 D:\Demo\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 D:\Demo\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
 D:\Demo\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+D:\Demo\WebApplication1\WebApplication1\bin\EntityFramework.dll
+D:\Demo\WebApplication1\WebApplication1\bin\EntityFramework.SqlServer.dll
+D:\Demo\WebApplication1\WebApplication1\bin\EntityFramework.xml
+D:\Demo\WebApplication1\WebApplication1\bin\EntityFramework.SqlServer.xml
