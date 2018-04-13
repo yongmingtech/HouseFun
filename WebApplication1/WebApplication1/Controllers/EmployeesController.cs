@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
@@ -12,12 +8,12 @@ namespace WebApplication1.Controllers
 {
     public class EmployeesController : Controller
     {
-        private NorthwindEntities db = new NorthwindEntities();
+        private readonly NorthwindEntities _db = new NorthwindEntities();
 
         // GET: Employees
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Employees2);
+            var employees = _db.Employees.Include(e => e.Employees2);
             return View(employees.ToList());
         }
 
@@ -28,7 +24,7 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employees employees = db.Employees.Find(id);
+            Employees employees = _db.Employees.Find(id);
             if (employees == null)
             {
                 return HttpNotFound();
@@ -39,7 +35,7 @@ namespace WebApplication1.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.ReportsTo = new SelectList(db.Employees, "EmployeeID", "LastName");
+            ViewBag.ReportsTo = new SelectList(_db.Employees, "EmployeeID", "LastName");
             return View();
         }
 
@@ -52,12 +48,12 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employees);
-                db.SaveChanges();
+                _db.Employees.Add(employees);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ReportsTo = new SelectList(db.Employees, "EmployeeID", "LastName", employees.ReportsTo);
+            ViewBag.ReportsTo = new SelectList(_db.Employees, "EmployeeID", "LastName", employees.ReportsTo);
             return View(employees);
         }
 
@@ -68,12 +64,12 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employees employees = db.Employees.Find(id);
+            Employees employees = _db.Employees.Find(id);
             if (employees == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ReportsTo = new SelectList(db.Employees, "EmployeeID", "LastName", employees.ReportsTo);
+            ViewBag.ReportsTo = new SelectList(_db.Employees, "EmployeeID", "LastName", employees.ReportsTo);
             return View(employees);
         }
 
@@ -86,11 +82,11 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employees).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(employees).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ReportsTo = new SelectList(db.Employees, "EmployeeID", "LastName", employees.ReportsTo);
+            ViewBag.ReportsTo = new SelectList(_db.Employees, "EmployeeID", "LastName", employees.ReportsTo);
             return View(employees);
         }
 
@@ -101,7 +97,7 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employees employees = db.Employees.Find(id);
+            Employees employees = _db.Employees.Find(id);
             if (employees == null)
             {
                 return HttpNotFound();
@@ -114,9 +110,9 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employees employees = db.Employees.Find(id);
-            db.Employees.Remove(employees);
-            db.SaveChanges();
+            Employees employees = _db.Employees.Find(id);
+            _db.Employees.Remove(employees);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -124,7 +120,7 @@ namespace WebApplication1.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
