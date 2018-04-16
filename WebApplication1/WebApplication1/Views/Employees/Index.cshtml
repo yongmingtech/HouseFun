@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Models.Employees>
+﻿@model List<WebApplication1.ViewModel.EmployeeViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,57 +12,33 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.Label("LastName")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.Label("FirstName")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.Label("Title")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TitleOfCourtesy)
+            @Html.Label("TitleOfCourtesy")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
+            @Html.Label("BirthDate")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HireDate)
+            @Html.Label("HireDate")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.Label("Address")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.Label("City")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Region)
+            @Html.Label("Region")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomePhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Extension)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhotoPath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Employees2.LastName)
-        </th>
-        <th></th>
+
     </tr>
 
 @foreach (var item in Model) {
@@ -93,30 +69,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Region)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostalCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HomePhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Extension)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhotoPath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employees2.LastName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |

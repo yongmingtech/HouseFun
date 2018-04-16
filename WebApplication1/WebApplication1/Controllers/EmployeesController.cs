@@ -1,8 +1,11 @@
-﻿using System.Data.Entity;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Net;
 using System.Web.Mvc;
+using WebApplication1.BusinessLayer.EmployeeBL;
 using WebApplication1.Models;
+using AutoMapper;
+using WebApplication1.ViewModel;
 
 namespace WebApplication1.Controllers
 {
@@ -13,8 +16,9 @@ namespace WebApplication1.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var employees = _db.Employees.Include(e => e.Employees2);
-            return View(employees.ToList());
+            var biz = new EmployeeBiz();
+            var viewModel = Mapper.Map<List<EmployeeViewModel>>(biz.GetEmployee());
+            return View(viewModel);
         }
 
         // GET: Employees/Details/5

@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebApplication1.App_Start;
 
 namespace WebApplication1
 {
@@ -8,6 +9,7 @@ namespace WebApplication1
     {
         protected void Application_Start()
         {
+            AutoMapperConfig.Configure();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
