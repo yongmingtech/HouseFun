@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using WebApplication1.Models;
 using WebApplication1.ViewModel;
 

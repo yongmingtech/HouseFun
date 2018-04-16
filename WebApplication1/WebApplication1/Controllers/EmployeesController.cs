@@ -5,6 +5,9 @@ using System.Web.Mvc;
 using WebApplication1.BusinessLayer.EmployeeBL;
 using WebApplication1.Models;
 using AutoMapper;
+using Microsoft.Practices.Unity;
+using WebApplication1.DataAccessLayer;
+using WebApplication1.DataAccessLayer.Interface;
 using WebApplication1.ViewModel;
 
 namespace WebApplication1.Controllers
@@ -16,7 +19,9 @@ namespace WebApplication1.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var biz = new EmployeeBiz();
+            var container = new UnityContainer();
+            IEmployeeAccess hello = container.Resolve<EmployeeAccess>();
+            var biz = new EmployeeBiz {ServiceImpl = hello};
             var viewModel = Mapper.Map<List<EmployeeViewModel>>(biz.GetEmployee());
             return View(viewModel);
         }

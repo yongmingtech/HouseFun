@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Practices.Unity;
+using WebApplication1.DataAccessLayer.Interface;
 using WebApplication1.Models;
 
 namespace WebApplication1.BusinessLayer.EmployeeBL
 {
     public class EmployeeBiz
     {
+        [Dependency]
+        public IEmployeeAccess ServiceImpl { get; set; }
+
         public List<Employees> GetEmployee()
         {
-            using (var db = new NorthwindEntities())
-            {
-                return db.Employees.ToList();
-            }
+            return ServiceImpl.GetEmployee();
         }
     }
 }
